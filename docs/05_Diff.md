@@ -24,9 +24,9 @@ The **Diff tab** lets you compare any two DataTables in your project side by sid
 
 | Color | Label | Meaning |
 |-------|-------|---------|
-| 🟢 Green | `+ Added` | Row exists in Table B only |
-| 🟡 Yellow | `~ Modified` | Row exists in both, but one or more fields differ |
-| 🔴 Red | `- Removed` | Row exists in Table A only |
+| Green | `+ Added` | Row exists in Table B only |
+| Yellow | `~ Modified` | Row exists in both, but one or more fields differ |
+| Red | `- Removed` | Row exists in Table A only |
 | (none) | `Unchanged` | Row is identical in both tables (hidden by default) |
 
 ---
@@ -43,6 +43,15 @@ The **Diff tab** lets you compare any two DataTables in your project side by sid
 
 For **Modified** rows, one line is shown per changed field.  
 For **Added** and **Removed** rows, a single summary line is shown.
+
+---
+
+## Blueprint Struct Support
+
+DataTable Pro fully supports DataTables that use **Blueprint-defined row structs**.
+
+- **Field names** are always shown as their readable authored names (e.g. `Rarity`, `SellPrice`) — never as internal GUID-suffixed names (e.g. `Rarity_13_859092AD...`)
+- **Enum values** are resolved to their display names (e.g. `Rare`, `Uncommon`) — never as internal enumerator names (e.g. `NewEnumerator0`)
 
 ---
 
