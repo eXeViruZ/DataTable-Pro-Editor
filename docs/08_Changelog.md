@@ -1,58 +1,40 @@
-# Changelog
+# Changelog — DataTable Pro Editor
 
-**Copyright (c) 2026 Tom Hanke Leon Vincent. All Rights Reserved.**
-
----
-
-## [1.0.0] — 2026
-
-Initial release.
-
-### Browse
-- Project-wide DataTable asset browser (Asset Name, Row Struct, Row Count)
-- Live asset search with text highlight
-- Auto-refresh via Asset Registry delegates
-
-### Row Editor
-- Dynamic column generation from row struct
-- Inline editing: strings, integers, floats, booleans, enums
-- Read-only display with tooltip for complex types (structs, arrays, maps)
-- Add Row, Duplicate Row, Delete Row with unique name generation
-- Row renaming via double-click
-- Full Undo/Redo via `FScopedTransaction`
-
-### Search, Filter & Sort
-- Real-time row search across all columns or a specific column
-- Column filter dropdown
-- Column header sorting: ascending / descending / reset
-- Numeric sort for int/float/double columns
-- Scroll-to-row with automatic search filter clear
-
-### Diff
-- Side-by-side diff for any two DataTables
-- Color-coded results: Added (green), Modified (yellow), Removed (red)
-- Per-field diff detail for Modified rows
-- Summary bar: Added / Modified / Removed counts
-- Real-time diff search (row name and field name)
-- Show Unchanged toggle
-- Click-to-navigate: jump from diff result to Browse tab with row selected
-- Struct mismatch warning with graceful fallback on common fields
-
-### Export
-- Export diff to CSV or JSON
-- JSON via `TJsonWriter` (correct escaping of all special characters)
-- Export respects active filter
-- Configurable default format in Project Settings
-
-### Technical
-- Editor-only plugin (zero runtime overhead)
-- Dockable Nomad Tab
-- `UDeveloperSettings` integration
-- Compatible with Unreal Engine 5.7
+All notable changes to this project are documented here.
 
 ---
 
-## Support
+## [1.0.0] — 2026-04-15
 
-- **Discord:** https://discord.gg/vgpmnN6nCR
-- **Email:** Tom.Hanke.Official@web.de
+### Initial Release
+
+- Browse View: project-wide DataTable browser with inline editing
+- Diff View: side-by-side DataTable comparison
+- Type-aware cell widgets: Enum dropdowns, Bool checkboxes, Numeric spinboxes
+- Full Undo/Redo support via `FScopedTransaction`
+- Add, Delete, Duplicate rows
+- Search, filter, sort
+- Export Diff to CSV and JSON
+- Locale-invariant float/double formatting (`FString::SanitizeFloat`)
+
+---
+
+## [Unreleased] — Bugfixes
+
+### Fixed
+
+#### Diff View — Field names showed internal GUID-suffixed names
+- **Problem:** Blueprint struct properties have internal names like `Rarity_13_859092AD4F3CE...` as their `FName`. `DTPDiffService::ExportRow` used `It->GetFName()` as the map key, causing the Diff View **Field** column to display GUID-suffixed names instead of readable names like `Rarity`.
+- **Fix:** Changed `ExportRow` to use `FName(*It->GetAuthoredName())` as the map key.
+- **Files:** `DTPDiffService.cpp`
+
+#### Diff View — Enum values showed `NewEnumerator0` instead of display names
+- **Problem:** Blueprint-defined enums have auto-generated internal enumerator names (e.g. `NewEnumerator0`). The generic `ExportTextItem_Direct` fallback exported these internal names instead of the readable display names.
+- **Fix:** Added explicit `FByteProperty` (TEnumAsByte) and `FEnumProperty` branches in `ExportRow` that call `UEnum::GetDisplayNameTextByValue()` to resolve the human-readable name.
+- **Files:** `DTPDiffService.cpp`
+- **Required include:** `#include "UObject/EnumProperty.h"`
+
+#### Browse View — Column header label lookup used wrong key after authored-name changes
+- **Problem:** `SDataTableRowList::BuildColumnMetaFromStruct` used `It->GetFName()` to populate `BoolColumns`, `EnumOptionsMap`, `IntColumns`, `DoubleColumns`, and `ReadOnlyColumns`. After the column keys were changed to `GetAuthoredName()`, the meta lookup no longer matched — causing Bool checkboxes, Enum dropdowns, and numeric spinboxes to disappear.
+- **Fix:** Changed `const FName PropName = It->GetFName()` to `const FName PropName = FName(*It->GetAuthoredName())` in `BuildColumnMetaFromStruct`, and the same in the header row label resolution loop.
+- **Files:** `SDataTableRowList.cpp` (lines 811, 964)
