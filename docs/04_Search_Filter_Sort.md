@@ -1,63 +1,81 @@
-# Search, Filter & Sort
+# Search, Find and Replace, Columns, and Navigation
 
-**Copyright (c) 2026 Tom Hanke Leon Vincent. All Rights Reserved.**
+This page covers row filtering, table-wide Find and Replace, sorting, column layouts, Jump to Row, refresh, and row counters.
 
----
+## Browse Search and Filtering
 
-## Row Search
+The Browse search field filters the displayed rows as you type.
 
-The **search bar** above the row list filters rows in real time as you type.
+- Search across **All Columns** or choose a specific column.
+- Clear the search field to restore the full displayed result set.
+- Filtering changes what is displayed; it does not remove rows from the loaded DataTable.
 
-- Matches against **all columns** by default
-- Case-insensitive
-- Clears instantly when the search box is emptied
+## Find and Replace
 
----
+Press **Ctrl+F** to open Find and Replace for the loaded DataTable.
 
-## Column Filter
+Available controls include:
 
-Next to the search bar is a **column filter dropdown**.
+- **Match Case**
+- **Previous**
+- **Next**
+- **Replace**
+- **Replace All**
+- Search across all columns or a selected column
 
-| Selection | Behavior |
-|-----------|----------|
-| **All Columns** (default) | Search text is matched against every field in each row |
-| **Row Name** | Search is restricted to the row name only |
-| **[Column Name]** | Search is restricted to that specific column |
+Keyboard navigation:
 
-Example: Column = `ItemType`, Text = `Weapon` → shows only rows where `ItemType` contains "Weapon".
+- **F3** — next result
+- **Shift+F3** — previous result
 
----
+Find and Replace operates across the loaded DataTable, including rows currently hidden by Browse search or filtering. Review the selected column and replacement text before using **Replace All**.
 
 ## Column Sorting
 
-Click any **column header** to sort the row list by that column.
+Click a sortable column header to change the displayed order.
 
-| Click | Result |
-|-------|--------|
-| 1st click | Ascending (A→Z, 0→9) |
-| 2nd click | Descending (Z→A, 9→0) |
-| 3rd click | Reset to original table order |
+Numeric columns sort by numeric value. Text-based columns sort by their displayed text. Sorting changes the view and does not rewrite the underlying DataTable row order unless a separate documented operation explicitly does so.
 
-### Numeric Sorting
+## Column Management
 
-Columns with numeric types (`int32`, `int64`, `float`, `double`) sort **numerically**, not lexicographically.
+Open the column controls to manage the current Browse layout.
 
-> Example: `1, 2, 9, 10, 11` — correct numeric order instead of `1, 10, 11, 2, 9`.
+- Toggle individual data columns.
+- Use **Show All** to make every data column visible.
+- Use **Reset Layout** to restore the default layout.
+- Column layout is persisted separately for each DataTable.
+- The **Row Name** column always remains visible.
 
----
+## Jump to Row
 
-## Scroll To Row
+Press **Ctrl+G** to open Jump to Row.
 
-When navigating from the **Diff tab** to a specific row:
+1. Enter the target Row Name.
+2. Confirm the request.
+3. Browse selects the matching row and scrolls it into view.
 
-1. The Browse tab is automatically activated
-2. The correct DataTable is loaded
-3. If a search filter is active, it is **automatically cleared**
-4. The list scrolls to the row and selects it
+Diff result navigation also returns to Browse and selects the corresponding row.
 
----
+## Manual Refresh
 
-## Support
+Use **Refresh** to reload the current DataTable view when external changes are not yet represented in the panel. Save pending edits before refreshing when necessary.
 
-- **Discord:** https://discord.gg/vgpmnN6nCR
-- **Email:** Tom.Hanke.Official@web.de
+## Row Counters
+
+Browse displays:
+
+- the number of rows currently displayed after search or filtering
+- the number of currently selected rows
+
+Use these counters to verify the target scope before multi-row duplication, deletion, or paste.
+
+## Related Shortcuts
+
+| Shortcut | Action |
+|---|---|
+| Ctrl+F | Open Find and Replace |
+| F3 | Find next |
+| Shift+F3 | Find previous |
+| Ctrl+G | Jump to Row |
+
+Previous: [Property Editing and Row Workflows](03_RowEditor.md) · [Documentation Index](INDEX.md) · Next: [DataTable Diff](05_Diff.md)

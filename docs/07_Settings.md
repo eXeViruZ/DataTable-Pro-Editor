@@ -1,52 +1,41 @@
 # Project Settings
 
-**Copyright (c) 2026 Tom Hanke Leon Vincent. All Rights Reserved.**
+DataTable Pro Editor exposes customer-facing settings under:
 
----
+`Edit → Project Settings → Plugins → DataTable Pro Editor`
 
-## Location
+## Large Table Row Warning Threshold
 
-```
-Edit → Project Settings → Plugins → DataTable Pro Editor
-```
+The large-table warning threshold controls when DataTable Pro Editor warns that the loaded DataTable contains a large number of rows.
 
----
+- Default: `1000`
+- Minimum: `100`
 
-## Available Settings
+Lower values show the warning for smaller DataTables. This setting does not block loading or editing.
 
-### General
+## Default Export As JSON
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| **Max Recent Tables** | `10` | Maximum number of recently opened DataTables to track. Range: 1–50 |
+**Default Export As JSON** controls the initial format selected by the Diff export dialog.
 
-### Performance
+- `false` — Diff export defaults to CSV
+- `true` — Diff export defaults to JSON
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| **Large Table Row Warning Threshold** | `1000` | A warning is shown when a DataTable exceeds this row count. Minimum: 100 |
+This setting applies only to Diff export. The complete loaded DataTable exports to CSV, and an individual row can be copied as CSV.
 
-### Export
+## Column Layout Persistence
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| **Default Export As JSON** | `false` | When `true`, the export dialog defaults to JSON instead of CSV |
+Column visibility and layout choices are stored per DataTable through the editor configuration used by the plugin.
 
----
+Use **Show All** or **Reset Layout** in Browse when a saved layout no longer matches the preferred view. The **Row Name** column remains visible.
 
-## Storage
+## Saving Settings
 
-Settings are saved to:
+Project Settings are persisted through Unreal Engine's configuration workflow. The exact config file used in a source-controlled project depends on how the setting is changed and saved by the editor.
 
-```
-YourProject/Config/DefaultDataTablePro.ini
-```
+## Related Documentation
 
-Commit this file to source control so all team members share the same settings.
+- [Quick Start and Browse Workflow](02_Browse.md)
+- [Search, Find and Replace, Columns, and Navigation](04_Search_Filter_Sort.md)
+- [Exports and Clipboard Data](06_Export.md)
 
----
-
-## Support
-
-- **Discord:** https://discord.gg/vgpmnN6nCR
-- **Email:** Tom.Hanke.Official@web.de
+Previous: [Exports and Clipboard Data](06_Export.md) · [Documentation Index](INDEX.md) · Next: [Changelog](08_Changelog.md)

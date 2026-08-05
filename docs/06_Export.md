@@ -1,81 +1,70 @@
-# Export
+# Exports and Clipboard Data
 
-**Copyright (c) 2026 Tom Hanke Leon Vincent. All Rights Reserved.**
+DataTable Pro Editor provides different output formats depending on whether the source is the complete loaded DataTable, an individual row, or Diff results.
 
----
+## Export Matrix
 
-## Overview
+| Source | CSV | JSON | Destination |
+|---|---:|---:|---|
+| Complete loaded DataTable | Yes | No | File |
+| Individual row | Yes | No | Clipboard through **Copy Row as CSV** |
+| Diff results | Yes | Yes | File |
 
-Diff results can be exported to **CSV** or **JSON** with a single click.
+## Export the Complete Loaded DataTable
 
----
+1. Load the target DataTable in **Browse** mode.
+2. Use **Export CSV**.
+3. Choose a file name and location.
+4. Save the CSV file.
 
-## How to Export
+The export includes the complete loaded DataTable. A complete DataTable JSON export is not available.
 
-1. Run a diff (see [Diff Guide](./05_Diff.md))
-2. Optionally apply a search filter to export only specific rows
-3. Click the **Export...** button in the diff toolbar
-4. A save dialog opens — choose a file name and location
-5. Select the format: `.csv` or `.json`
-6. Click **Save**
+## Copy an Individual Row as CSV
 
-> The Export button is only enabled when there are results to export.
+1. Select the target row.
+2. Open the row context menu.
+3. Choose **Copy Row as CSV**.
+4. Paste the clipboard content into the target application.
 
----
+Individual-row JSON output is not available.
 
-## Export Scope
+## Copy Row Name or Cell Value
 
-Only **currently visible rows** are exported — the export respects the active search filter and the "Show Unchanged" toggle.
+The row context menu also provides:
 
----
+- **Copy Row Name**
+- **Copy Cell Value**
 
-## CSV Format
+Press **Ctrl+C** to copy the active cell value.
 
-```csv
-Change,Row Name,Field,Value A,Value B
-+ Added,NewRow_3,,,
-~ Modified,Row_1,Health,100,150
-- Removed,OldRow_7,,,
-```
+## Export Diff Results
 
----
+1. Run a comparison in **Diff** mode.
+2. Apply Diff search or filtering when needed.
+3. Use **Export...**.
+4. Choose CSV or JSON.
+5. Save the file.
 
-## JSON Format
+Diff export follows the current Diff result scope shown by the Diff workflow.
 
-```json
-[
-  {
-    "change": "+ Added",
-    "row": "NewRow_3",
-    "field": "",
-    "valueA": "",
-    "valueB": ""
-  },
-  {
-    "change": "~ Modified",
-    "row": "Row_1",
-    "field": "Health",
-    "valueA": "100",
-    "valueB": "150"
-  }
-]
-```
+## Default Diff Export Format
 
-All string values are **properly escaped** — special characters like quotes, backslashes, and newlines are handled correctly.
+Open:
 
----
+`Edit → Project Settings → Plugins → DataTable Pro Editor`
 
-## Default Format
+Use **Default Export As JSON** to choose whether the Diff export dialog defaults to JSON instead of CSV.
 
-Configure the default export format in:
+This setting applies to Diff export. It does not add JSON export for the complete DataTable or an individual row.
 
-```
-Project Settings → Plugins → DataTable Pro Editor → Export → Default Export As JSON
-```
+## Clipboard Paste Is Not an Export
 
----
+**Ctrl+V** imports a compatible clipboard value into the active data column across selected rows. It requires:
 
-## Support
+- at least one selected row
+- an active data cell and active data column
+- clipboard content compatible with the destination property type
 
-- **Discord:** https://discord.gg/vgpmnN6nCR
-- **Email:** Tom.Hanke.Official@web.de
+See [Troubleshooting, FAQ, and Limitations](09_Troubleshooting_And_FAQ.md) when paste is rejected.
+
+Previous: [DataTable Diff](05_Diff.md) · [Documentation Index](INDEX.md) · Next: [Project Settings](07_Settings.md)

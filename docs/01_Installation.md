@@ -1,68 +1,78 @@
 # Installation
 
-**Copyright (c) 2026 Tom Hanke Leon Vincent. All Rights Reserved.**
-
----
+This page explains how to install and enable DataTable Pro Editor v1.1.0 for Unreal Engine 5.8.
 
 ## Requirements
 
-- Unreal Engine **5.7**
-- Windows (Editor)
-- A C++ or Blueprint project (both supported)
+- Unreal Engine 5.8
+- A project that uses Unreal Engine DataTables
+- Win64, Linux, or Mac editor
+- No runtime setup
+- No Blueprint modification
+- No external third-party dependency
 
----
+DataTable Pro Editor v1.1.0 is distributed as an Unreal Engine 5.8 package. Older UE 5.7-compatible releases do not include the v1.1.0 features described in this documentation.
 
-## Installing from FAB
+## Install from Fab
 
-1. Purchase **DataTable Pro Editor** on FAB
-2. Open the **Epic Games Launcher**
-3. Go to **Library → FAB Library**
-4. Find *DataTable Pro Editor* and click **Install to Engine** or **Add to Project**
-5. Open your project in Unreal Engine 5.7
-6. Go to **Edit → Plugins**
-7. Search for `DataTable Pro` and ensure it is **enabled** (checkbox checked)
-8. Restart the editor when prompted
+1. Acquire **DataTable Pro Editor** from the [Fab listing](https://www.fab.com/listings/1021a6d3-16de-4a89-a2af-981c89f36b18).
+2. Open the **Epic Games Launcher**.
+3. Open your Fab Library and locate **DataTable Pro Editor**.
+4. Install the Unreal Engine 5.8 package to the engine or add it to the target project, depending on the launcher option shown.
+5. Open the project in Unreal Engine 5.8.
+6. Open **Edit → Plugins**.
+7. Search for **DataTable Pro Editor** and enable the plugin.
+8. Restart the Unreal Editor when prompted.
 
----
+## Install a Manually Supplied Package
 
-## Manual Installation
+Use these steps only when you received an authorized plugin package outside the launcher workflow.
 
-1. Copy the `DataTablePro` folder into your project's `Plugins/` directory:
-   ```
-   YourProject/
-   └── Plugins/
-       └── DataTablePro/
-           ├── DataTablePro.uplugin
-           └── Source/
-   ```
-2. Right-click your `.uproject` file and select **Generate Visual Studio project files**
-3. Open the solution and **Build** the project
-4. Launch the editor — the plugin loads automatically
+1. Close the Unreal Editor.
+2. Copy the plugin folder into the project's `Plugins/` directory.
+3. Reopen the project in Unreal Engine 5.8.
+4. Enable **DataTable Pro Editor** under **Edit → Plugins**.
+5. Restart the editor when prompted.
 
----
+No game module, Actor, Component, Blueprint, input mapping, or Project Settings setup is required.
 
-## Opening the Panel
+## Open the Editor
 
-After installation, open the plugin via:
+Open the dockable panel from:
 
-```
-Unreal Editor → Window → DataTable Pro
-```
+`Window → DataTable Pro`
 
-The panel is a **Nomad Tab** — it can be docked anywhere in the editor layout like any native Unreal panel.
+The panel can be docked like other Unreal Editor tabs.
 
----
+## Verify the Installation
 
-## Verifying the Installation
+The installation is successful when:
 
-If the plugin is correctly installed:
-- **Window → DataTable Pro** appears in the menu
-- The panel opens and shows your project's DataTables in the left browser
-- The status bar shows no plugin errors
+- **Window → DataTable Pro** is available.
+- The DataTable Pro panel opens without a plugin load error.
+- The project browser lists DataTable assets from the project.
 
----
+## Update the Plugin
+
+1. Close the Unreal Editor.
+2. Install or replace the plugin with the package for the target Unreal Engine version.
+3. Reopen the project.
+4. Confirm that the plugin is enabled.
+5. Review the [Changelog](08_Changelog.md) for version-specific behavior.
+
+Do not use the UE 5.7 package when following the v1.1.0 documentation.
+
+## Remove the Plugin
+
+1. Disable **DataTable Pro Editor** under **Edit → Plugins**.
+2. Restart the editor when prompted.
+3. Remove the plugin package only after the project has closed.
+
+Because the plugin is editor-only, removal does not remove a required runtime gameplay system.
 
 ## Support
 
-- **Discord:** https://discord.gg/vgpmnN6nCR
-- **Email:** Tom.Hanke.Official@web.de
+- [Discord Support and Community](https://discord.gg/vgpmnN6nCR)
+- [Email Support](mailto:Tom.Hanke.Official@web.de)
+
+[Documentation Index](INDEX.md) · Next: [Quick Start and Browse Workflow](02_Browse.md)
